@@ -25,10 +25,7 @@ void main() {
     title: 'Mocked title',
   );
 
-  const tFailure = ServerFailure(
-    statusCode: 400,
-    data: [],
-  );
+  final tFailure = ServerFailure();
 
   final tDate = DateTime(2023, 10, 11);
 
@@ -52,11 +49,11 @@ void main() {
     'Should return a ServerFailure when an error occurs with the repository\'s call',
     () async {
       when(() => repository.getSpaceMediaFromDate(tDate))
-          .thenAnswer((_) async => const Left(tFailure));
+          .thenAnswer((_) async => Left(tFailure));
 
       final result = await usecase(tDate);
 
-      expect(result, equals(const Left(tFailure)));
+      expect(result, equals(Left(tFailure)));
       verify(
         () => repository.getSpaceMediaFromDate(tDate),
       );

@@ -8,17 +8,6 @@ abstract class Failure extends Equatable {
 }
 
 class ServerFailure extends Failure {
-  final int statusCode;
-  final dynamic data;
-
-  const ServerFailure({
-    required this.statusCode,
-    required this.data,
-  });
-
   @override
-  List<Object?> get props => [
-        statusCode,
-        data,
-      ];
+  List<Object?> get props => [];
 }
