@@ -17,6 +17,8 @@ dependencies:
   #Architecture
   dartz: ^0.10.1
   equatable: ^2.0.5
+  intl: ^0.18.1
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:

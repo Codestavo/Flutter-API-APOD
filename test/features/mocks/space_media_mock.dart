@@ -1,10 +1,13 @@
-const spaceMediaMock = """{
-  "copyright": "Jerry Zhang (left), Baolong Chen (photographer) & Amber Zhang (right)",
-  "date": "2023-10-16",
-  "explanation": `She knew everything but the question. She was well aware that there would be a complete annular eclipse of the Sun visible from their driving destination: Lake Abert in Oregon.  She knew that the next ring-of-fire eclipse would occur in the USA only in 16 more years, making this a rare photographic opportunity.  She was comfortable with the plan: that she and her boyfriend would appear in front of the eclipse in silhouette, sometimes alone, and sometimes together.  She knew that the annular phase of this eclipse would last only a few minutes and she helped in the many hours of planning.  She could see their friend who set up the camera about 400 meters away at the bottom of a ridge.  What she didn't know was the question she would be asked. But she did know the answer: "yes".   Album: Selected eclipse images sent in to APOD`,
-  "hdurl": "https://apod.nasa.gov/apod/image/2310/AnnularProposal_Zhang_3500.jpg",
+const spaceMediaMock = """
+{
+  "copyright": "Jiang Wu",
+  "date": "2023-10-18",
+  "explanation":
+      "It's so big it is easy to miss. The entire Veil Nebula spans six times the diameter of the full moon, but is so dim you need binoculars to see it. The nebula was created about 15,000 years ago when a star in the constellation of the Swan (Cygnus) exploded. The spectacular explosion would have appeared brighter than even Venus for a week - but there is no known record of it.  Pictured is the western edge of the still-expanding gas cloud. Notable gas filaments include the Witch's Broom Nebula on the upper left near the bright foreground star 52 Cygni, and Fleming's Triangular Wisp (formerly known as Pickering's Triangle) running diagonally up the image middle.  What is rarely imaged -- but seen in the featured long exposure across many color bands -- is the reflecting brown dust that runs vertically up the image left, dust likely created in the cool atmospheres of massive stars.",
+  "hdurl": "https://apod.nasa.gov/apod/image/2310/WesternVeil_Wu_2974.jpg",
   "media_type": "image",
   "service_version": "v1",
-  "title": "Eclipse Rings",
-  "url": "https://apod.nasa.gov/apod/image/2310/AnnularProposal_Zhang_960.jpg",
-}""";
+  "title": "Dust and the Western Veil Nebula",
+  "url": "https://apod.nasa.gov/apod/image/2310/WesternVeil_Wu_960.jpg"
+}
+""";
