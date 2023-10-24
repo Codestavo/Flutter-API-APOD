@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nasa_space_view/core/coordinator/app_routes.dart';
 import 'package:nasa_space_view/core/coordinator/coordinator.dart';
-import 'package:nasa_space_view/features/space_view/presenter/coordinator/home_routes.dart';
 
 class AppCoordinator {
   static Future<void> redirectAppToLoading() async {
@@ -16,12 +16,18 @@ class AppCoordinator {
 
   static void redirectAppToBeginning() {
     ICoordinator.key.currentState!.pushNamedAndRemoveUntil(
-      HomeRoutes.home.route,
+      AppRoutes.home.route,
       (route) => false,
     );
   }
 
   static void redirectAppToPrevious() {
     ICoordinator.key.currentState!.pop();
+  }
+
+  static Future<void> redirectToApodPage() async {
+    await ICoordinator.key.currentState!.pushNamed(
+      AppRoutes.apod.route,
+    );
   }
 }

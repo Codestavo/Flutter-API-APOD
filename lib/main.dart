@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:nasa_space_view/core/coordinator/app_routes.dart';
 import 'package:nasa_space_view/core/inject/app_inject.dart';
 import 'package:nasa_space_view/core/inject/inject.dart';
-import 'package:nasa_space_view/features/space_view/presenter/coordinator/home_routes.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 void main() {
@@ -43,7 +42,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: HomeRoutes.home.route,
+      initialRoute: AppRoutes.home.route,
       onGenerateRoute: AppRoutes.onGenerateRoute,
       locale: const Locale('en'),
       supportedLocales: const [Locale('en')],

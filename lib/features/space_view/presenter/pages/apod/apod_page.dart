@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class ApodPage extends StatefulWidget {
+  const ApodPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ApodPage> createState() => _ApodPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ApodPageState extends State<ApodPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nothing yet'),
+        title: const Text('Something now'),
         leadingWidth: 50,
         backgroundColor: Colors.purple,
         centerTitle: true,
