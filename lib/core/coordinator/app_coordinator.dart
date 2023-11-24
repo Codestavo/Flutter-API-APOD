@@ -27,7 +27,7 @@ class AppCoordinator {
 
   static Future<void> redirectToApodPage() async {
     await ICoordinator.key.currentState!.pushNamed(
-      AppRoutes.apod.route,
+      AppRoutes.spaceMediaView.route,
     );
   }
 }

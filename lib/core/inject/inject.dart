@@ -11,5 +11,5 @@ abstract class Inject {
   void repositories();
   void usecases();
   void cubits();
-  void controllers();
+  void configurations();
 }

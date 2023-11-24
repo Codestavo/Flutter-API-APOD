@@ -13,7 +13,7 @@ class AppInject extends Inject {
     repositories();
     usecases();
     cubits();
-    controllers();
+    configurations();
   }
 
   AppInject.iniciar() : this._();
@@ -25,9 +25,9 @@ class AppInject extends Inject {
   }
 
   @override
-  void controllers() {
+  void configurations() {
     for (final module in _modules) {
-      module.controllers();
+      module.configurations();
     }
   }
 

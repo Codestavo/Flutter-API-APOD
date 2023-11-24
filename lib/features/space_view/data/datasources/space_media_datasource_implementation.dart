@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:nasa_space_view/features/space_view/core/errors/exceptions.dart';
-import 'package:nasa_space_view/features/space_view/core/http_client/http_cient.dart';
+import 'package:nasa_space_view/features/space_view/core/errors/failure.dart';
+import 'package:nasa_space_view/features/space_view/core/dio/request_provider.dart';
 import 'package:nasa_space_view/features/space_view/core/utils/converter/date_to_string_converter.dart';
 import 'package:nasa_space_view/features/space_view/core/utils/keys/nasa_api_keys.dart';
 import 'package:nasa_space_view/features/space_view/data/datasources/endpoints/nasa_endpoint.dart';
@@ -9,17 +10,29 @@ import 'package:nasa_space_view/features/space_view/data/datasources/space_media
 import 'package:nasa_space_view/features/space_view/data/models/space_media_model.dart';
 
 class SpaceMediaDatasourceImplementation implements ISpaceMediaDatasource {
-  final HttpClient client;
+  final IRequestProvider _requestApiProvider;
 
-  SpaceMediaDatasourceImplementation(this.client);
+  SpaceMediaDatasourceImplementation(this._requestApiProvider);
+
   @override
-  Future<SpaceMediaModel> getSpaceMediaFromDate(DateTime date) async {
-    final response = await client.get(NasaEndpoint.apod(
-        NasaApiKeys.apiKey, DateToStringConverter.convertDateToString(date)));
-    if (response.statusCode == 200) {
-      return SpaceMediaModel.fromJson(jsonDecode(response.data));
-    } else {
-      throw ServerException();
+  Future<SpaceMediaModel> getSpaceMediaFromDate(
+    DateTime date,
+  ) async {
+    try {
+      final response = await _requestApiProvider.getAsync(
+        NasaEndpoint.apod(
+          NasaApiKeys.apiKey,
+          DateToStringConverter.convertDateToString(
+            date,
+          ),
+        ),
+      );
+
+      return SpaceMediaModel.fromJson(
+        response,
+      );
+    } catch (e) {
+      throw ServerFailure();
     }
   }
 }

@@ -1,18 +1,18 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:nasa_space_view/features/space_view/core/errors/exceptions.dart';
-import 'package:nasa_space_view/features/space_view/core/http_client/http_cient.dart';
+import 'package:nasa_space_view/features/space_view/core/dio/request_provider.dart';
 import 'package:nasa_space_view/features/space_view/data/datasources/space_media_datasource.dart';
 import 'package:nasa_space_view/features/space_view/data/datasources/space_media_datasource_implementation.dart';
 import 'package:nasa_space_view/features/space_view/data/models/space_media_model.dart';
 
 import '../../../mocks/space_media_mock.dart';
 
-class MockHttpClient extends Mock implements HttpClient {}
+class MockHttpClient extends Mock implements IRequestProvider {}
 
 void main() {
   late ISpaceMediaDatasource datasource;
-  late HttpClient client;
+  late IRequestProvider client;
   setUp(() {
     client = MockHttpClient();
     datasource = SpaceMediaDatasourceImplementation(client);
@@ -23,7 +23,7 @@ void main() {
       "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2023-10-18";
 
   void successMock() {
-    when(() => client.get(any())).thenAnswer(
+    when(() => client.getAsync(any())).thenAnswer(
       (_) async => HttpResponse(
         data: spaceMediaMock,
         statusCode: 200,
@@ -45,7 +45,7 @@ void main() {
 
     await datasource.getSpaceMediaFromDate(tDate);
 
-    verify(() => client.get(tUrl));
+    verify(() => client.getAsync(tUrl));
     verifyNoMoreInteractions(client);
   });
 
@@ -59,7 +59,7 @@ void main() {
 
   test('Should return a ServerException when the request is unsuccessful',
       () async {
-    when(() => client.get(any())).thenAnswer(
+    when(() => client.getAsync(any())).thenAnswer(
         (_) async => HttpResponse(data: 'Error message', statusCode: 400));
 
     final result = datasource.getSpaceMediaFromDate(tDate);
