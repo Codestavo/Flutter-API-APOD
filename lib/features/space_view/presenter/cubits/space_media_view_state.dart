@@ -13,11 +13,13 @@ class SuccessSpaceMediaViewState extends SpaceMediaViewState {
   final String title;
   final String description;
   final String spaceMediaImage;
+  final String spaceMediaDate;
 
   SuccessSpaceMediaViewState({
     required this.title,
     required this.description,
     required this.spaceMediaImage,
+    required this.spaceMediaDate,
   });
 
   @override
@@ -25,6 +27,7 @@ class SuccessSpaceMediaViewState extends SpaceMediaViewState {
         title,
         description,
         spaceMediaImage,
+        spaceMediaDate,
       ];
 }
 

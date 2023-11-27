@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nasa_space_view/common/common_colors.dart';
 import 'package:nasa_space_view/common/widgets/common_drawer_widget.dart';
 import 'package:nasa_space_view/core/coordinator/app_coordinator.dart';
 import 'package:nasa_space_view/common/widgets/common_base_page_widget.dart';
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
       appBarTitle: const Text(
         'Astronomy Picture Of The Day',
         style: TextStyle(
-          color: Colors.white,
+          color: CommonColors.neutralWhite,
           fontSize: 18,
           fontWeight: FontWeight.w500,
         ),
@@ -38,7 +39,7 @@ class _HomePageState extends State<HomePage> {
               'Press here',
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.white,
+                color: CommonColors.neutralWhite,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
               ),

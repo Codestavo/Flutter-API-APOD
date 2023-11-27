@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nasa_space_view/common/common_colors.dart';
 
 class CommonBasePageWidget extends StatelessWidget {
   final Widget body;
@@ -21,7 +22,7 @@ class CommonBasePageWidget extends StatelessWidget {
       appBar: AppBar(
         title: appBarTitle,
         leadingWidth: 50,
-        backgroundColor: const Color.fromARGB(255, 110, 34, 110),
+        backgroundColor: CommonColors.primaryColor,
         leading: hasDrawer!
             ? Builder(builder: (context) {
                 return GestureDetector(
@@ -34,8 +35,9 @@ class CommonBasePageWidget extends StatelessWidget {
               })
             : GestureDetector(
                 child: const Icon(
-                  Icons.arrow_back_rounded,
-                  color: Colors.white,
+                  Icons.arrow_back_ios,
+                  size: 20,
+                  color: CommonColors.neutralWhite,
                 ),
                 onTap: () => Navigator.pop(context),
               ),

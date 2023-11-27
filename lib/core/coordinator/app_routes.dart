@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nasa_space_view/core/inject/inject.dart';
 import 'package:nasa_space_view/features/space_view/presenter/cubits/space_media_view_cubit.dart';
-import 'package:nasa_space_view/features/space_view/presenter/pages/apod/space_media_view_page.dart';
+import 'package:nasa_space_view/features/space_view/presenter/pages/space_media/space_media_view_page.dart';
 import 'package:nasa_space_view/features/space_view/presenter/pages/home/home_page.dart';
 
 enum AppRoutes {

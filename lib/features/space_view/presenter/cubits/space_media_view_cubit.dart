@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:nasa_space_view/features/space_view/domain/usecases/get_space_media_from_date_usecase.dart';
 import 'package:nasa_space_view/features/space_view/presenter/cubits/space_media_view_state.dart';
 
@@ -27,9 +28,17 @@ class SpaceMediaViewCubit extends Cubit<SpaceMediaViewState> {
             title: spaceMedia.title,
             description: spaceMedia.description,
             spaceMediaImage: spaceMedia.mediaUrl,
+            spaceMediaDate: spaceMedia.date,
           ),
         );
       },
     );
+  }
+
+  String getFormatedDate(String date) {
+    var inputFormat = DateFormat('yyyy-MM-dd');
+    var inputDate = inputFormat.parse(date);
+    var outputFormat = DateFormat('MM/dd/yyyy');
+    return outputFormat.format(inputDate);
   }
 }
