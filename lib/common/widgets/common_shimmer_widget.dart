@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nasa_space_view/common/common_colors.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CommonShimmerWidget extends StatelessWidget {
@@ -24,8 +25,8 @@ class CommonShimmerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      highlightColor: Colors.grey[200]!,
-      baseColor: Colors.grey[100]!,
+      highlightColor: CommonColors.tertiaryColor[900]!,
+      baseColor: CommonColors.tertiaryColor[700]!,
       child: Container(
         width: width,
         height: height,
@@ -33,7 +34,7 @@ class CommonShimmerWidget extends StatelessWidget {
         decoration: BoxDecoration(
           shape: boxShape,
           borderRadius: borderRadius,
-          color: Colors.grey[100],
+          color: CommonColors.tertiaryColor[700]!,
         ),
       ),
     );

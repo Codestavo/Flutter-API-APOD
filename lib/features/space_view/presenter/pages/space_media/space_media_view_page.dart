@@ -1,15 +1,19 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nasa_space_view/common/common_colors.dart';
+import 'package:nasa_space_view/common/common_responsive_sizes.dart';
+import 'package:nasa_space_view/features/space_view/core/utils/converter/date_to_string_converter.dart';
+import 'package:nasa_space_view/features/space_view/presenter/args/space_media_view_args.dart';
 import 'package:nasa_space_view/features/space_view/presenter/cubits/space_media_view_cubit.dart';
 import 'package:nasa_space_view/features/space_view/presenter/cubits/space_media_view_state.dart';
 import 'package:nasa_space_view/features/space_view/presenter/widgets/space_media_view_shimmer.dart';
 
 class SpaceMediaViewPage extends StatefulWidget {
+  final SpaceMediaViewArgs args;
+
   const SpaceMediaViewPage({
+    required this.args,
     super.key,
   });
 
@@ -23,7 +27,9 @@ class _SpaceMediaViewPageState extends State<SpaceMediaViewPage> {
   @override
   void initState() {
     _cubit = context.read<SpaceMediaViewCubit>();
-    _cubit.getSpaceMediaFromDate();
+    _cubit.getSpaceMediaFromDate(
+      date: widget.args.date,
+    );
     super.initState();
   }
 
@@ -45,7 +51,8 @@ class _SpaceMediaViewPageState extends State<SpaceMediaViewPage> {
                   Stack(
                     children: [
                       GestureDetector(
-                        onTap: () => log('message'),
+                        //TODO: Implement open media when tap
+                        //onTap: () => log('message'),
                         child: CachedNetworkImage(
                           imageUrl: state.spaceMediaImage,
                           imageBuilder: (context, imageProvider) => Container(
@@ -59,22 +66,36 @@ class _SpaceMediaViewPageState extends State<SpaceMediaViewPage> {
                             ),
                           ),
                           placeholder: (context, url) => Container(
+                            height: MediaQuery.of(context).size.height * 0.4,
                             alignment: Alignment.center,
-                            child: const CircularProgressIndicator(
-                              color: CommonColors.secondaryColor,
+                            child: const Center(
+                              child: CircularProgressIndicator(
+                                color: CommonColors.secondaryColor,
+                              ),
                             ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).padding.top + 20,
-                          left: 20,
+                          top: MediaQuery.of(context).padding.top +
+                              CommonResponsiveSizes.setResponsiveVerticalSize(
+                                20,
+                              ),
+                          left:
+                              CommonResponsiveSizes.setResponsiveHorizontalSize(
+                            20,
+                          ),
                         ),
                         child: InkWell(
                           onTap: () => Navigator.of(context).pop(),
                           child: Container(
-                            padding: const EdgeInsets.only(left: 8),
+                            padding: EdgeInsets.only(
+                              left: CommonResponsiveSizes
+                                  .setResponsiveHorizontalSize(
+                                8,
+                              ),
+                            ),
                             height: 44,
                             width: 44,
                             decoration: BoxDecoration(
@@ -93,8 +114,8 @@ class _SpaceMediaViewPageState extends State<SpaceMediaViewPage> {
                   ),
                   Transform.translate(
                     offset: const Offset(0, -10),
-                    child: const DecoratedBox(
-                      decoration: BoxDecoration(
+                    child: DecoratedBox(
+                      decoration: const BoxDecoration(
                         color: CommonColors.primaryColor,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(24),
@@ -102,7 +123,10 @@ class _SpaceMediaViewPageState extends State<SpaceMediaViewPage> {
                         ),
                       ),
                       child: SizedBox(
-                        height: 12,
+                        height:
+                            CommonResponsiveSizes.setResponsiveHorizontalSize(
+                          12,
+                        ),
                         width: double.maxFinite,
                       ),
                     ),
@@ -117,8 +141,11 @@ class _SpaceMediaViewPageState extends State<SpaceMediaViewPage> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
+                    padding: EdgeInsets.symmetric(
+                      horizontal:
+                          CommonResponsiveSizes.setResponsiveHorizontalSize(
+                        16,
+                      ),
                     ),
                     child: Divider(
                       color: CommonColors.secondaryColor[800],
@@ -127,16 +154,25 @@ class _SpaceMediaViewPageState extends State<SpaceMediaViewPage> {
                   Expanded(
                     child: SingleChildScrollView(
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                          left: 16,
-                          right: 16,
-                          bottom: 16,
+                        padding: EdgeInsets.only(
+                          left:
+                              CommonResponsiveSizes.setResponsiveHorizontalSize(
+                            16,
+                          ),
+                          right:
+                              CommonResponsiveSizes.setResponsiveHorizontalSize(
+                            16,
+                          ),
+                          bottom:
+                              CommonResponsiveSizes.setResponsiveVerticalSize(
+                            16,
+                          ),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(
-                              height: 16,
+                            CommonResponsiveSizes.getResponsiveVerticalSizedBox(
+                              16,
                             ),
                             Text(
                               'Date :',
@@ -146,19 +182,21 @@ class _SpaceMediaViewPageState extends State<SpaceMediaViewPage> {
                                 color: CommonColors.secondaryColor[200],
                               ),
                             ),
-                            const SizedBox(
-                              height: 8,
+                            CommonResponsiveSizes.getResponsiveVerticalSizedBox(
+                              8,
                             ),
                             Text(
-                              _cubit.getFormatedDate(state.spaceMediaDate),
+                              DateToStringConverter.dateToMonthNameFormat(
+                                widget.args.date,
+                              ),
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
                                 color: CommonColors.neutralWhite,
                               ),
                             ),
-                            const SizedBox(
-                              height: 16,
+                            CommonResponsiveSizes.getResponsiveVerticalSizedBox(
+                              16,
                             ),
                             Text(
                               'Description :',
@@ -168,8 +206,8 @@ class _SpaceMediaViewPageState extends State<SpaceMediaViewPage> {
                                 color: CommonColors.secondaryColor[200],
                               ),
                             ),
-                            const SizedBox(
-                              height: 8,
+                            CommonResponsiveSizes.getResponsiveVerticalSizedBox(
+                              16,
                             ),
                             Text(
                               state.description,

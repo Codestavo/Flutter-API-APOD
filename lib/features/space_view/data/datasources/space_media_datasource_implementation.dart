@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:nasa_space_view/features/space_view/core/errors/exceptions.dart';
 import 'package:nasa_space_view/features/space_view/core/errors/failure.dart';
 import 'package:nasa_space_view/features/space_view/core/dio/request_provider.dart';
 import 'package:nasa_space_view/features/space_view/core/utils/converter/date_to_string_converter.dart';
@@ -22,7 +19,7 @@ class SpaceMediaDatasourceImplementation implements ISpaceMediaDatasource {
       final response = await _requestApiProvider.getAsync(
         NasaEndpoint.apod(
           NasaApiKeys.apiKey,
-          DateToStringConverter.convertDateToString(
+          DateToStringConverter.dateToUSFormat(
             date,
           ),
         ),
